@@ -8,7 +8,7 @@ import { ScryfallCard } from './model/ScryfallCard';
 export class ScryfallApi {
   constructor(private axiosInstance: AxiosInstance) {}
 
-  public async getCard(set: string, collectorNumber: number): Promise<ScryfallCard | undefined> {
+  public async getCard(set: string, collectorNumber: string): Promise<ScryfallCard | undefined> {
     const url = `/cards/${set.toLowerCase()}/${collectorNumber}`;
 
     try {

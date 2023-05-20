@@ -29,7 +29,7 @@ export class LocalCache {
     });
   }
 
-  public async search(set: string, collectorNumber: number): Promise<CacheCard | undefined> {
+  public async search(set: string, collectorNumber: string): Promise<CacheCard | undefined> {
     if (!this.collection) {
       this.collection = await this.load();
     }
@@ -42,7 +42,7 @@ export class LocalCache {
     name: string,
     multiverseId: number,
     set: string,
-    collectorNumber: number,
+    collectorNumber: string,
     mtgStocksId: number,
   ) {
     if (!this.collection) {

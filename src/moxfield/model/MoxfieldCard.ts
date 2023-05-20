@@ -4,5 +4,5 @@ export interface MoxfieldCard {
   condition: string;
   language: string;
   foil: boolean;
-  collectorNumber: number;
+  collectorNumber: string;
 }

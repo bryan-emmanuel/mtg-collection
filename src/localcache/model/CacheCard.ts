@@ -2,6 +2,6 @@ export interface CacheCard {
   name: string;
   multiverseId: number;
   set: string;
-  collectorNumber: number;
+  collectorNumber: string;
   mtgStocksId: number;
 }
