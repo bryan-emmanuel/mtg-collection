@@ -31,7 +31,7 @@ export class LocalCache {
 
   public async search(set: string, collectorNumber: number): Promise<CacheCard | undefined> {
     if (!this.collection) {
-      await this.load();
+      this.collection = await this.load();
     }
 
     return this.collection?.cards
@@ -46,16 +46,18 @@ export class LocalCache {
     mtgStocksId: number,
   ) {
     if (!this.collection) {
-      await this.load();
+      this.collection = await this.load();
     }
 
-    this.collection?.cards.push({
+    const card: CacheCard = {
       name,
       multiverseId,
       set,
       collectorNumber,
       mtgStocksId,
-    });
+    };
+
+    this.collection?.cards.push(card);
   }
 
   public async save(): Promise<void> {

@@ -1,3 +1,4 @@
+/* eslint-disable class-methods-use-this */
 import * as fs from 'fs';
 import { parse } from 'csv-parse';
 import { MoxfieldCard } from './model/MoxfieldCard';
@@ -94,14 +95,30 @@ export class MoxfieldApi {
     return this.positions[name] ?? this.cachePosition(name);
   }
 
+  private sanitizeCollectorNumber(cn: string): number {
+    let reduce = 0;
+    const size = cn.length;
+    let num;
+
+    do {
+      num = Number(cn.substring(0, size - reduce));
+      reduce += 1;
+    } while (Number.isNaN(num) && reduce <= size);
+
+    return num;
+  }
+
   private convertCard(row: string): MoxfieldCard {
+    const cn = row[(this.getPosition(header_collector_number))];
+    const collectorNumber = this.sanitizeCollectorNumber(cn);
+
     return {
       name: row[this.getPosition(header_name)],
       edition: row[this.getPosition(header_edition)],
       condition: row[this.getPosition(header_condition)],
       language: row[this.getPosition(header_language)],
       foil: row[this.getPosition(header_foil)] === data_foil,
-      collectorNumber: Number(row[(this.getPosition(header_collector_number))]),
+      collectorNumber,
     };
   }
 

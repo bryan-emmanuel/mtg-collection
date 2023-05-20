@@ -10,7 +10,8 @@ export class MtgStocksApi {
   constructor(private axiosInstance: AxiosInstance) {}
 
   public async search(name: string): Promise<MtgStocksSearchResult[] | undefined> {
-    const query = encodeURI(name);
+    const sanitizedName = name.split('//')[0].trim();
+    const query = encodeURI(sanitizedName);
     const url = `/search/autocomplete/${query}`;
 
     try {
@@ -23,7 +24,7 @@ export class MtgStocksApi {
         },
       );
 
-      return data.filter((result) => result.name === name);
+      return data.filter((result) => result.name === sanitizedName);
     } catch (e) {
       if (axios.isAxiosError(e)) {
         // eslint-disable-next-line no-console

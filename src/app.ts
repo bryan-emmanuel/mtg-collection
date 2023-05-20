@@ -6,7 +6,7 @@ import { ScryfallApi } from './scryfall/ScryfallApi';
 import { MtgStocksPrint } from './mtgstocks/model/MtgStocksPrint';
 import { createAxiosInstance } from './httpModule';
 
-const moxfield_filepath = 'moxfield_haves_2023-04-26-1538Z.csv';
+const moxfield_filepath = 'moxfield_haves_2023-04-30-2310Z.csv';
 const cache_filename = 'cache.json';
 
 async function main(): Promise<void> {
